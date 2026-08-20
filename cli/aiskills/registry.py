@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
 from pathlib import Path
 
 import yaml
+
+from aiskills.models import SkillMetadata
+from aiskills.search import search_skills
 
 VALID_RISK = {"low", "medium", "high"}
 VALID_STATUS = {"experimental", "alpha", "beta", "stable"}
@@ -34,21 +36,6 @@ VALID_CATEGORIES = {
 }
 
 NAME_PATTERN = re.compile(r"^[a-z][a-z0-9-]{1,48}[a-z0-9]$")
-
-
-@dataclass
-class SkillMetadata:
-    """Parsed metadata for a single AISkills skill."""
-
-    name: str
-    description: str
-    version: str
-    category: str
-    tags: list[str]
-    risk: str
-    status: str
-    related_skills: list[str] = field(default_factory=list)
-    path: Path = field(default_factory=Path)
 
 
 class SkillRegistry:
@@ -91,19 +78,8 @@ class SkillRegistry:
         return self._skills.get(name)
 
     def search(self, query: str) -> list[SkillMetadata]:
-        """Search skills by keyword — checks name, description, and tags."""
-        self._load()
-        query_lower = query.lower()
-        results = []
-        for skill in self._skills.values():
-            if (
-                query_lower in skill.name.lower()
-                or query_lower in skill.description.lower()
-                or any(query_lower in tag.lower() for tag in skill.tags)
-                or query_lower in skill.category.lower()
-            ):
-                results.append(skill)
-        return sorted(results, key=lambda s: s.name)
+        """Search skills by keyword with deterministic ranking."""
+        return search_skills(self.all(), query)
 
     def names(self) -> set[str]:
         """Return the set of all skill names."""

@@ -116,7 +116,7 @@ Use `requirements-analysis` after this skill to structure the task.
 ### Step 6: Identify Constraints and Risks
 
 **Inspect:**
-- Any `TODO`, `FIXME`, `HACK`, or `DEPRECATED` comments in key files
+- Any pending task markers, workarounds, or deprecated tags in key files
 - `SECURITY.md` or security-related configuration
 - Any `legacy/`, `deprecated/`, or `do-not-touch/` directories
 
