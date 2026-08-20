@@ -1,0 +1,42 @@
+name: Validate Skills
+
+on:
+  pull_request:
+    paths:
+      - "skills/**"
+      - "templates/**"
+  push:
+    branches: [main, master]
+    paths:
+      - "skills/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate skill changes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install aiskills
+        run: pip install -e .
+
+      - name: Validate all skills
+        run: python -m aiskills validate --skills-dir skills/
+        env:
+          AISKILLS_DIR: ${{ github.workspace }}
+
+      - name: List all skills
+        run: python -m aiskills list
+        env:
+          AISKILLS_DIR: ${{ github.workspace }}
