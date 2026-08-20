@@ -340,8 +340,7 @@ def validate(skills_dir: str | None) -> None:
     # Summary
     if result.is_valid:
         console.print(
-            f"[bold green]PASS[/bold green] - "
-            f"{result.pass_count}/{result.skill_count} skills valid"
+            f"[bold green]PASS[/bold green] - {result.pass_count}/{result.skill_count} skills valid"
         )
         if result.warnings:
             console.print(f"   [yellow]{len(result.warnings)} warning(s)[/yellow]")
