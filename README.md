@@ -13,7 +13,7 @@
 
 ## What is AISkills?
 
-AI coding agents are powerful executors, but they are inconsistent engineers:
+AI coding agents are capable executors, but they are inconsistent engineers:
 
 - They **jump straight to writing code** without clarifying requirements.
 - They **invent architecture** without inspecting existing patterns.
@@ -25,12 +25,12 @@ AI coding agents are powerful executors, but they are inconsistent engineers:
 ```text
 LLM          = Brain (Reasoning & Code Generation)
 Coding Agent = Worker (File I/O, Terminal, Tools)
-AISkills     = Engineering Playbook (Requirements → Architecture → TDD → Evaluation → Security → Production)
+AISkills     = Engineering Playbook (Requirements -> Architecture -> TDD -> Evaluation -> Security -> Production)
 ```
 
 ---
 
-## 🎯 The AISkills Difference
+## The AISkills Difference
 
 ```text
 User: "Build a document Q&A RAG application for our team."
@@ -39,23 +39,23 @@ Without AISkills:
 └── Agent immediately writes boilerplate code using unverified libraries.
 
 With AISkills:
-└── 1. Requirements Analysis   → [SPEC.md] (What queries? Latency & cost limits?)
-    2. Repository Discovery    → Inspect existing stack (Postgres + pgvector)
-    3. RAG Architecture Design → [DESIGN.md + ADR.md] (Chunking, embeddings, hybrid retrieval)
-    4. Implementation Planning → Ordered, reviewable steps with human approval gates
-    5. TDD Implementation      → Tests written first for parsers & retrievers
-    6. RAG Evaluation          → [EVALUATION.md] (Faithfulness, answer relevancy, precision)
-    7. AI Security Audit       → [SECURITY.md] (OWASP GenAI LLM Top 10 defense)
-    8. Production Readiness    → 11-point pre-deploy verification
+└── 1. Requirements Analysis   -> [SPEC.md] (What queries? Latency & cost limits?)
+    2. Repository Discovery    -> Inspect existing stack (Postgres + pgvector)
+    3. RAG Architecture Design -> [DESIGN.md + ADR.md] (Chunking, embeddings, hybrid retrieval)
+    4. Implementation Planning -> Ordered, reviewable steps with human approval gates
+    5. TDD Implementation      -> Tests written first for parsers & retrievers
+    6. RAG Evaluation          -> [EVALUATION.md] (Faithfulness, answer relevancy, precision)
+    7. AI Security Audit       -> [SECURITY.md] (OWASP GenAI LLM Top 10 defense)
+    8. Production Readiness    -> 11-point pre-deploy verification
 ```
 
 ---
 
-## 📚 14 Canonical Skills
+## 14 Canonical Skills
 
 All skills follow the [canonical SKILL.md specification](docs/SKILL_SPEC.md) (YAML frontmatter + 13 mandatory sections).
 
-### 🛠️ Software Engineering Skills (8)
+### Software Engineering Skills (8)
 
 | Skill | Category | Risk | Purpose |
 |---|---|---|---|
@@ -68,7 +68,7 @@ All skills follow the [canonical SKILL.md specification](docs/SKILL_SPEC.md) (YA
 | [`bug-diagnosis`](skills/debugging/bug-diagnosis/SKILL.md) | `debugging` | Low | Systematic root-cause isolation before attempting code fixes |
 | [`code-review`](skills/code-review/code-review/SKILL.md) | `code-review` | Low | Multi-dimensional review (correctness, security, perf, maintainability) |
 
-### 🤖 AI Engineering Skills (6)
+### AI Engineering Skills (6)
 
 | Skill | Category | Risk | Purpose |
 |---|---|---|---|
@@ -81,32 +81,32 @@ All skills follow the [canonical SKILL.md specification](docs/SKILL_SPEC.md) (YA
 
 ---
 
-## 📋 Engineering Document Templates (7)
+## Engineering Document Templates (7)
 
 Standardized markdown templates produced by skills during execution:
 
-- [`templates/SPEC.md`](templates/SPEC.md) — Feature specification and acceptance criteria.
-- [`templates/ADR.md`](templates/ADR.md) — Architecture Decision Records with alternatives and trade-offs.
-- [`templates/DESIGN.md`](templates/DESIGN.md) — System design with dedicated AI/LLM architecture section.
-- [`templates/EVALUATION.md`](templates/EVALUATION.md) — AI evaluation report with RAG, agent, and latency metrics.
-- [`templates/SECURITY.md`](templates/SECURITY.md) — Security review report mapping OWASP LLM01–LLM10.
-- [`templates/PRD.md`](templates/PRD.md) — Product requirements document.
-- [`templates/REVIEW.md`](templates/REVIEW.md) — Code review report with categorized findings.
+- [`templates/SPEC.md`](templates/SPEC.md) - Feature specification and acceptance criteria.
+- [`templates/ADR.md`](templates/ADR.md) - Architecture Decision Records with alternatives and trade-offs.
+- [`templates/DESIGN.md`](templates/DESIGN.md) - System design with dedicated AI/LLM architecture section.
+- [`templates/EVALUATION.md`](templates/EVALUATION.md) - AI evaluation report with RAG, agent, and latency metrics.
+- [`templates/SECURITY.md`](templates/SECURITY.md) - Security review report mapping OWASP LLM01-LLM10.
+- [`templates/PRD.md`](templates/PRD.md) - Product requirements document.
+- [`templates/REVIEW.md`](templates/REVIEW.md) - Code review report with categorized findings.
 
 ---
 
-## 🔄 End-to-End Workflows (6)
+## End-to-End Workflows (6)
 
-- [`workflows/feature-development`](workflows/feature-development/README.md) — Discovery through production release.
-- [`workflows/rag-development`](workflows/rag-development/README.md) — Use case analysis through production monitoring.
-- [`workflows/agent-development`](workflows/agent-development/README.md) — Agent boundaries, tools, and guardrails.
-- [`workflows/bug-fixing`](workflows/bug-fixing/README.md) — Reproduction, root cause analysis, regression test, and fix.
-- [`workflows/security-review`](workflows/security-review/README.md) — AI security audit pipeline.
-- [`workflows/production-readiness`](workflows/production-readiness/README.md) — Mandatory pre-deploy checklist.
+- [`workflows/feature-development`](workflows/feature-development/README.md) - Discovery through production release.
+- [`workflows/rag-development`](workflows/rag-development/README.md) - Use case analysis through production monitoring.
+- [`workflows/agent-development`](workflows/agent-development/README.md) - Agent boundaries, tools, and guardrails.
+- [`workflows/bug-fixing`](workflows/bug-fixing/README.md) - Reproduction, root cause analysis, regression test, and fix.
+- [`workflows/security-review`](workflows/security-review/README.md) - AI security audit pipeline.
+- [`workflows/production-readiness`](workflows/production-readiness/README.md) - Mandatory pre-deploy checklist.
 
 ---
 
-## 🔌 Agent Adapters (5)
+## Agent Adapters (5)
 
 AISkills is tool-agnostic and works with any agent platform:
 
@@ -120,7 +120,7 @@ AISkills is tool-agnostic and works with any agent platform:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Install AISkills
 
@@ -141,10 +141,10 @@ aiskills init
 ```
 
 This creates:
-- `AGENTS.md` — Instructions for coding agents working in your repository.
-- `CONTEXT.md` — Project context template (tech stack, architecture, conventions).
+- `AGENTS.md` - Instructions for coding agents working in your repository.
+- `CONTEXT.md` - Project context template (tech stack, architecture, conventions).
 
-### 3. Explore & Search Skills
+### 3. Explore and Search Skills
 
 ```bash
 # List all 14 skills
@@ -158,7 +158,7 @@ aiskills search "security"
 aiskills info rag-evaluation
 ```
 
-### 4. Validate Repository & Skills
+### 4. Validate Repository and Skills
 
 ```bash
 # Validate skill schemas and required sections
@@ -170,9 +170,9 @@ aiskills doctor
 
 ---
 
-## 🛡️ Security & Evaluation Principles
+## Security and Evaluation Principles
 
-### 🔒 AI Security by Design
+### AI Security by Design
 AISkills security reviews are grounded in **OWASP GenAI LLM Top 10 (2026)**:
 - **LLM01**: Prompt Injection (Direct & Indirect)
 - **LLM02**: Sensitive Information Disclosure
@@ -185,7 +185,7 @@ AISkills security reviews are grounded in **OWASP GenAI LLM Top 10 (2026)**:
 - **LLM09**: Misinformation & Hallucination
 - **LLM10**: Unbounded Consumption
 
-### ⚖️ Evaluation Honesty Rule
+### Evaluation Honesty Rule
 If a quality metric has not been measured:
 - Report: `NOT MEASURED`
 - Never estimate, round up, or fabricate evaluation scores.
@@ -193,7 +193,7 @@ If a quality metric has not been measured:
 
 ---
 
-## 🧪 Testing & CI/CD
+## Testing and CI/CD
 
 ```bash
 # Run 66 unit & integration tests
@@ -208,22 +208,22 @@ GitHub Actions automatically runs multi-version matrix tests (Python 3.10, 3.11,
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
-- **v0.1 (Current — Alpha)**: 14 core skills, 7 templates, 6 workflows, 5 adapters, Python CLI with ranked search and validation, 100% test coverage.
+- **v0.1 (Current - Alpha)**: 14 core skills, 7 templates, 6 workflows, 5 adapters, Python CLI with ranked search and validation, 100% test coverage.
 - **v0.2**: Memory design skills, tool-use evaluation benchmarks, automated skill chaining engine.
 - **v0.3**: Native RAGAS / DeepEval evaluation runners, expanded IDE plugins.
 - **v1.0**: Stable release following community feedback and production validation.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! See [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`docs/skill-authoring.md`](docs/skill-authoring.md) for skill authoring guidelines, schema rules, and PR workflows.
 
 ---
 
-## 📄 License
+## License
 
 Apache License 2.0. See [`LICENSE`](LICENSE) for details.  
-Copyright © 2026 Karthik Rajesh Shet.
+Copyright (c) 2026 Karthik Rajesh Shet.
