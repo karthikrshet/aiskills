@@ -5,9 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
-from click.testing import CliRunner
-
 from aiskills.main import cli
+from click.testing import CliRunner
 
 
 @pytest.fixture
@@ -132,7 +131,9 @@ class TestCLIDoctor:
         skills_dir.mkdir()
         monkeypatch.setenv("AISKILLS_DIR", str(tmp_path))
         (tmp_path / "AGENTS.md").write_text("# Agent instructions")
-        (tmp_path / "CONTEXT.md").write_text("# Project context - real content here", encoding="utf-8")
+        (tmp_path / "CONTEXT.md").write_text(
+            "# Project context - real content here", encoding="utf-8"
+        )
         result = runner.invoke(cli, ["doctor", "--project-dir", str(tmp_path)])
         assert result.exit_code == 0
 

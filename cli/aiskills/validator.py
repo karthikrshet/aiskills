@@ -5,7 +5,6 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
 
 import yaml
 
@@ -14,8 +13,6 @@ from aiskills.registry import (
     VALID_CATEGORIES,
     VALID_RISK,
     VALID_STATUS,
-    SkillRegistry,
-    _parse_skill_md,
 )
 
 REQUIRED_SECTIONS = [
@@ -42,7 +39,7 @@ PLACEHOLDER_PATTERNS = [
     re.compile(r"Lorem ipsum"),
 ]
 
-SEMVER_PATTERN = re.compile(r'^\d+\.\d+\.\d+$')
+SEMVER_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
 
 MAX_BODY_LINES = 400
 

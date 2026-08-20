@@ -4,10 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
-
 from aiskills.registry import SkillRegistry, _parse_skill_md
-
 
 SKILL_A = """\
 ---
@@ -88,11 +85,10 @@ Example 1: something.
 """
 
 SKILL_B = (
-    SKILL_A
-    .replace("name: skill-alpha", "name: skill-beta")
+    SKILL_A.replace("name: skill-alpha", "name: skill-beta")
     .replace(
         "description: |\n  Use this skill for alpha testing. It covers important alpha scenarios\n  that are useful for AI coding agents.",
-        "description: |\n  Use this skill for beta RAG evaluation testing. It covers retrieval\n  scenarios that are useful for AI coding agents building RAG systems."
+        "description: |\n  Use this skill for beta RAG evaluation testing. It covers retrieval\n  scenarios that are useful for AI coding agents building RAG systems.",
     )
     .replace("tags: [alpha, testing, discovery]", "tags: [beta, rag, evaluation]")
     .replace("category: discovery", "category: ai/rag")
@@ -128,7 +124,7 @@ class TestParseSkillMd:
     def test_returns_none_for_malformed_yaml(self, tmp_path):
         path = tmp_path / "SKILL.md"
         path.write_text("---\n: invalid: yaml: content\n---\n# Body\n")
-        result = _parse_skill_md(path)
+        _parse_skill_md(path)
         # May return None or a partial result depending on yaml parser behavior
         # Key: it should not raise an exception
 
@@ -140,11 +136,10 @@ class TestParseSkillMd:
         assert not metadata.description.endswith("\n")
 
     def test_related_skills_parsed(self, tmp_path):
-        content = SKILL_A + ""  # skill-beta is in related-skills via body only
         # Add related-skills frontmatter
         content_with_related = SKILL_A.replace(
             "status: alpha\n",
-            "status: alpha\nrelated-skills:\n  - skill-beta\n"
+            "status: alpha\nrelated-skills:\n  - skill-beta\n",
         )
         path = write_skill(tmp_path, content_with_related, "skill-alpha")
         metadata = _parse_skill_md(path)

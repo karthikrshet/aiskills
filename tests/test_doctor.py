@@ -2,10 +2,6 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
-import pytest
-
 from aiskills.doctor import run_doctor
 
 
@@ -27,7 +23,9 @@ class TestDoctor:
         assert any(f.level == "WARNING" for f in context_findings)
 
     def test_context_md_with_placeholder_warns(self, tmp_path):
-        (tmp_path / "CONTEXT.md").write_text("# [Your project name]\nSome content [e.g., placeholder]")
+        (tmp_path / "CONTEXT.md").write_text(
+            "# [Your project name]\nSome content [e.g., placeholder]"
+        )
         report = run_doctor(tmp_path, tmp_path / "skills")
         context_findings = [f for f in report.findings if "CONTEXT.md" in f.check]
         assert any(f.level == "WARNING" for f in context_findings)

@@ -5,10 +5,8 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
 
 import yaml
-
 
 VALID_RISK = {"low", "medium", "high"}
 VALID_STATUS = {"experimental", "alpha", "beta", "stable"}
@@ -87,7 +85,7 @@ class SkillRegistry:
         self._load()
         return sorted(self._skills.values(), key=lambda s: s.name)
 
-    def get(self, name: str) -> Optional[SkillMetadata]:
+    def get(self, name: str) -> SkillMetadata | None:
         """Return a skill by name, or None if not found."""
         self._load()
         return self._skills.get(name)
@@ -113,7 +111,7 @@ class SkillRegistry:
         return set(self._skills.keys())
 
 
-def _parse_skill_md(path: Path) -> Optional[SkillMetadata]:
+def _parse_skill_md(path: Path) -> SkillMetadata | None:
     """Parse a SKILL.md file and return a SkillMetadata object, or None on failure."""
     content = path.read_text(encoding="utf-8")
 

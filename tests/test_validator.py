@@ -4,10 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
-
-from aiskills.validator import validate_all, _validate_skill_file
-
+from aiskills.validator import _validate_skill_file, validate_all
 
 MINIMAL_VALID_SKILL = """\
 ---

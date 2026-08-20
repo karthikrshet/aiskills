@@ -6,7 +6,6 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-
 PLACEHOLDER_CONTEXT_PATTERNS = [
     re.compile(r"\[Your project name\]", re.IGNORECASE),
     re.compile(r"\[One paragraph", re.IGNORECASE),
@@ -33,8 +32,8 @@ class DoctorFinding:
     message: str
 
     def __str__(self) -> str:
-        icon = {"OK": "✅", "WARNING": "⚠️ ", "ERROR": "❌"}.get(self.level, "  ")
-        return f"{icon} {self.check}: {self.message}"
+        tag = {"OK": "[OK]", "WARNING": "[WARN]", "ERROR": "[FAIL]"}.get(self.level, "    ")
+        return f"{tag} {self.check}: {self.message}"
 
 
 @dataclass
