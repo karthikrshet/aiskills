@@ -84,24 +84,29 @@ With AISkills:
 
 ---
 
-## Canonical Skills Catalog
+## Canonical Skills Catalog (20 Skills)
 
 All skills follow the [canonical SKILL.md specification](docs/SKILL_SPEC.md) (YAML frontmatter + 13 mandatory sections).
 
-### Software Engineering Skills
+### Software Engineering Skills (10)
 
 | Skill | Category | Risk | Purpose | File Link |
 |---|---|---|---|---|
 | `repository-discovery` | `discovery` | Low | Ground agent context in existing codebase patterns before touching code | [`SKILL.md`](skills/discovery/repository-discovery/SKILL.md) |
 | `requirements-analysis` | `requirements` | Low | Transform ambiguous requests into structured, testable specifications | [`SKILL.md`](skills/requirements/requirements-analysis/SKILL.md) |
 | `requirement-clarification` | `requirements` | Low | Formulate targeted questions to resolve blocking ambiguities | [`SKILL.md`](skills/requirements/requirement-clarification/SKILL.md) |
+| `grill-me` | `requirements` | Low | Interactive requirements interview to uncover hidden edge cases | [`SKILL.md`](skills/requirements/grill-me/SKILL.md) |
 | `architecture-design` | `architecture` | Medium | System design with explicit trade-offs and Architecture Decision Records (ADRs) | [`SKILL.md`](skills/architecture/architecture-design/SKILL.md) |
+| `rapid-prototyping` | `architecture` | Low | Time-boxed disposable spikes and exploratory feasibility prototypes | [`SKILL.md`](skills/architecture/rapid-prototyping/SKILL.md) |
 | `implementation-planning` | `implementation` | Medium | Ordered, step-by-step implementation plans with risk mitigation | [`SKILL.md`](skills/implementation/implementation-planning/SKILL.md) |
+| `task-decomposition` | `implementation` | Low | Slice features and PRDs into atomic, independently verifiable tickets | [`SKILL.md`](skills/implementation/task-decomposition/SKILL.md) |
 | `tdd` | `testing` | Low | Test-driven development workflow (write failing tests first) | [`SKILL.md`](skills/testing/tdd/SKILL.md) |
 | `bug-diagnosis` | `debugging` | Low | Systematic root-cause isolation before attempting code fixes | [`SKILL.md`](skills/debugging/bug-diagnosis/SKILL.md) |
 | `code-review` | `code-review` | Low | Multi-dimensional review (correctness, security, performance, maintainability) | [`SKILL.md`](skills/code-review/code-review/SKILL.md) |
+| `session-handoff` | `documentation` | Low | Compress session state into structured handoff notes for continuity | [`SKILL.md`](skills/documentation/session-handoff/SKILL.md) |
+| `git-guardrails` | `security` | High | Enforce safety boundaries on git commands and prevent secret leaks | [`SKILL.md`](skills/security/git-guardrails/SKILL.md) |
 
-### AI Engineering Skills
+### AI Engineering Skills (7)
 
 | Skill | Category | Risk | Purpose | File Link |
 |---|---|---|---|---|
@@ -109,6 +114,7 @@ All skills follow the [canonical SKILL.md specification](docs/SKILL_SPEC.md) (YA
 | `rag-architecture` | `ai/rag` | Medium | End-to-end RAG architecture (chunking, embeddings, hybrid search, context assembly) | [`SKILL.md`](skills/ai/rag/rag-architecture/SKILL.md) |
 | `rag-evaluation` | `ai/evaluation` | Low | Measure faithfulness, relevancy, context precision/recall, and hallucination | [`SKILL.md`](skills/ai/evaluation/rag-evaluation/SKILL.md) |
 | `context-engineering` | `ai/context-engineering` | Low | Token budgeting, context compression, prioritization, and injection detection | [`SKILL.md`](skills/ai/context-engineering/context-engineering/SKILL.md) |
+| `concise-mode` | `ai/context-engineering` | Low | Zero-filler, high-density communication to conserve token budget | [`SKILL.md`](skills/ai/context-engineering/concise-mode/SKILL.md) |
 | `ai-security-review` | `ai/ai-security` | Low | Security audit grounded in **OWASP GenAI LLM Top 10 (2026)** | [`SKILL.md`](skills/ai/ai-security/ai-security-review/SKILL.md) |
 | `production-readiness` | `ai/production-ai` | High | Pre-deploy gating for model abstraction, cost SLOs, latency, and rollbacks | [`SKILL.md`](skills/ai/production-ai/production-readiness/SKILL.md) |
 
