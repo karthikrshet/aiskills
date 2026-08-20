@@ -84,11 +84,36 @@ With AISkills:
 
 ---
 
-## Canonical Skills Catalog (20 Skills)
+## Why These Skills Exist: Fixing the 3 Classic Agent Failure Modes
+
+AISkills is built to resolve the three most common failure modes developers encounter with Claude Code, Cursor, Codex, and coding agents:
+
+### 1. Misalignment: "The Agent Didn't Build What I Wanted"
+> *"No-one knows exactly what they want."* - David Thomas & Andrew Hunt, The Pragmatic Programmer
+
+- **The Problem:** The user provides a brief prompt ("add OAuth login"). The agent begins coding with unspoken assumptions, leading to massive rework when the result doesn't match the user's intent.
+- **The Fix:** An interactive grilling session ([`grill-with-docs`](skills/requirements/grill-with-docs/SKILL.md) / [`grill-me`](skills/requirements/grill-me/SKILL.md)). The agent interrogates the human on edge cases, domain models, permissions, and failure modes before touching code.
+
+### 2. Verbosity: "The Agent Is Too Wordy and Hallucinates Jargon"
+> *"With a ubiquitous language, conversations among developers and expressions of the code are all derived from the same domain model."* - Eric Evans, Domain-Driven Design
+
+- **The Problem:** Agents dropped into a repository use 20 vague words where 1 precise domain term will do.
+- **The Fix:** A shared **Ubiquitous Language** documented in [`CONTEXT.md`](CONTEXT.md). For example:
+  - *Before:* "There's an issue when a lesson inside a course section is given a spot on the file system."
+  - *After (Ubiquitous Language):* "There's a problem with the materialization cascade."
+  - Using [`grill-with-docs`](skills/requirements/grill-with-docs/SKILL.md), the agent extracts domain jargon and captures hard architectural trade-offs in ADRs (`templates/ADR.md`).
+
+### 3. Lack of Engineering Guardrails: "Vibe Coding without Verification"
+- **The Problem:** Agents delete files, skip tests, force-push branches, and declare features "done" without measuring quality.
+- **The Fix:** Hard safety rules ([`git-guardrails`](skills/security/git-guardrails/SKILL.md)), test-first discipline ([`tdd`](skills/testing/tdd/SKILL.md)), ticket slicing ([`task-decomposition`](skills/implementation/task-decomposition/SKILL.md)), and formal evaluation ([`rag-evaluation`](skills/ai/evaluation/rag-evaluation/SKILL.md)).
+
+---
+
+## Canonical Skills Catalog (22 Skills)
 
 All skills follow the [canonical SKILL.md specification](docs/SKILL_SPEC.md) (YAML frontmatter + 13 mandatory sections).
 
-### Software Engineering Skills (10)
+### Software Engineering Skills (15)
 
 | Skill | Category | Risk | Purpose | File Link |
 |---|---|---|---|---|
@@ -96,6 +121,8 @@ All skills follow the [canonical SKILL.md specification](docs/SKILL_SPEC.md) (YA
 | `requirements-analysis` | `requirements` | Low | Transform ambiguous requests into structured, testable specifications | [`SKILL.md`](skills/requirements/requirements-analysis/SKILL.md) |
 | `requirement-clarification` | `requirements` | Low | Formulate targeted questions to resolve blocking ambiguities | [`SKILL.md`](skills/requirements/requirement-clarification/SKILL.md) |
 | `grill-me` | `requirements` | Low | Interactive requirements interview to uncover hidden edge cases | [`SKILL.md`](skills/requirements/grill-me/SKILL.md) |
+| `grill-with-docs` | `requirements` | Low | Build ubiquitous domain language, update `CONTEXT.md`, and draft ADRs | [`SKILL.md`](skills/requirements/grill-with-docs/SKILL.md) |
+| `triage` | `requirements` | Low | Systematically categorize, prioritize, and label issues and bug reports | [`SKILL.md`](skills/requirements/triage/SKILL.md) |
 | `architecture-design` | `architecture` | Medium | System design with explicit trade-offs and Architecture Decision Records (ADRs) | [`SKILL.md`](skills/architecture/architecture-design/SKILL.md) |
 | `rapid-prototyping` | `architecture` | Low | Time-boxed disposable spikes and exploratory feasibility prototypes | [`SKILL.md`](skills/architecture/rapid-prototyping/SKILL.md) |
 | `implementation-planning` | `implementation` | Medium | Ordered, step-by-step implementation plans with risk mitigation | [`SKILL.md`](skills/implementation/implementation-planning/SKILL.md) |
