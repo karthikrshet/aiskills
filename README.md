@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/karthikrshet/aiskills/actions/workflows/ci.yml/badge.svg)](https://github.com/karthikrshet/aiskills/actions/workflows/ci.yml)
 [![Validate Skills](https://github.com/karthikrshet/aiskills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/karthikrshet/aiskills/actions/workflows/validate-skills.yml)
-[![Tests](https://img.shields.io/badge/tests-66%20passed-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/tests-68-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.1.0--alpha-orange.svg)](CHANGELOG.md)
@@ -262,7 +262,7 @@ aiskills --version
 | Command | Description | Example |
 |---|---|---|
 | `aiskills init` | Initialize `AGENTS.md` and `CONTEXT.md` in current project | `aiskills init` |
-| `aiskills list` | List all 14 canonical skills with categories and risk levels | `aiskills list` |
+| `aiskills list` | List all 22 canonical skills with categories and risk levels | `aiskills list` |
 | `aiskills search <query>` | Deterministic ranked search across names, tags, categories, descriptions | `aiskills search "RAG evaluation"` |
 | `aiskills info <skill>` | Display detailed skill metadata, description, tags, and related skills | `aiskills info rag-evaluation` |
 | `aiskills validate` | Validate all skills against schema, section, and placeholder rules | `aiskills validate --skills-dir skills/` |
@@ -373,7 +373,7 @@ See [`docs/skill-authoring.md`](docs/skill-authoring.md) for the complete author
 ## Testing and CI/CD
 
 ```bash
-# Run the test suite (66 automated tests)
+# Run the test suite (68 automated tests)
 pytest tests/ -v
 
 # Run linting and code formatting checks
@@ -390,7 +390,7 @@ GitHub Actions automatically executes:
 
 ## Roadmap
 
-- **v0.1.0-alpha (Current)**: 14 canonical skills, 7 templates, 6 workflows, 5 adapters, Python CLI with ranked search and validation, 66 automated tests.
+- **v0.1.0-alpha (Current)**: 22 canonical skills, 7 templates, 6 workflows, 5 adapters, Python CLI with ranked search and validation, 68 automated tests.
 - **v0.2**: Memory design skills, tool-use evaluation benchmarks, automated skill chaining engine.
 - **v0.3**: Native RAGAS / DeepEval evaluation runners, expanded IDE sidecar plugins.
 - **v1.0**: Stable release following community feedback and production validation.

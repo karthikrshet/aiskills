@@ -175,6 +175,9 @@ def list_skills() -> None:
     registry = SkillRegistry(skills_root)
     skills = registry.all()
 
+    for error in registry.errors:
+        console.print(f"[yellow]WARNING[/yellow] {error}")
+
     if not skills:
         console.print(
             f"[yellow]No skills found.[/yellow] Expected skills at: [cyan]{skills_root}[/cyan]"
@@ -230,6 +233,9 @@ def search(query: str) -> None:
     registry = SkillRegistry(skills_root)
     results = registry.search(query)
 
+    for error in registry.errors:
+        console.print(f"[yellow]WARNING[/yellow] {error}")
+
     if not results:
         console.print(f"[yellow]No skills found matching:[/yellow] '{query}'")
         console.print("Try: [cyan]aiskills list[/cyan] to see all skills")
@@ -262,6 +268,9 @@ def info(skill_name: str) -> None:
     skills_root = _find_skills_root()
     registry = SkillRegistry(skills_root)
     skill = registry.get(skill_name)
+
+    for error in registry.errors:
+        console.print(f"[yellow]WARNING[/yellow] {error}")
 
     if skill is None:
         console.print(f"[red]Skill not found:[/red] '{skill_name}'")

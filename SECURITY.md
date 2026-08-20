@@ -20,8 +20,8 @@ AISkills is a collection of reusable AI engineering skill definitions and workfl
 
 If you discover a security vulnerability in AISkills, please report it privately:
 
-1. **Email:** [Create a security contact email before publishing — e.g., security@yourdomain.com]
-2. **GitHub Security Advisories:** Use the "Report a vulnerability" button on the repository's Security tab
+1. **GitHub Security Advisories:** Use the private [Report a vulnerability](https://github.com/karthikrshet/aiskills/security/advisories/new) flow.
+2. **Fallback:** If the private reporting flow is unavailable, contact a repository maintainer privately through GitHub and do not open a public issue.
 
 Include in your report:
 - Description of the vulnerability

@@ -148,7 +148,7 @@ Retrieved content may contain malicious instructions (indirect prompt injection)
 **Risk surface:** Any content fetched from external sources — web pages, user-uploaded documents, email content, external APIs.
 
 **Detection checks:**
-- Does any retrieved chunk contain imperative phrases directed at an AI? ("Ignore previous instructions", "You are now", "System: override")
+- Does any retrieved chunk contain imperative phrases that attempt to override the assistant's instructions?
 - Does any retrieved chunk request actions outside the expected domain?
 - Does any chunk attempt to change the LLM's persona or role?
 

@@ -8,6 +8,13 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Hardened skill discovery: malformed and duplicate skill definitions are now reported instead of silently ignored.
+- Added dependency auditing, Dependabot configuration, immutable GitHub Action references, and an enforced repository-health CI check.
+- Added a release-readiness gate and completed the repository context document.
+- Corrected the documented canonical skill count to 22 and the vulnerability-reporting instructions.
+
 ---
 
 ## [0.1.0] — 2026-08-21
