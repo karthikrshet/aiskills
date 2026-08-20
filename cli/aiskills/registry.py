@@ -44,7 +44,14 @@ class SkillRegistry:
     def __init__(self, skills_root: Path) -> None:
         self.skills_root = skills_root
         self._skills: dict[str, SkillMetadata] = {}
+        self._errors: list[str] = []
         self._loaded = False
+
+    @property
+    def errors(self) -> tuple[str, ...]:
+        """Return skill files skipped during discovery and their reasons."""
+        self._load()
+        return tuple(self._errors)
 
     def _load(self) -> None:
         """Walk the skills directory and parse all SKILL.md files."""
@@ -55,15 +62,25 @@ class SkillRegistry:
             self._loaded = True
             return
 
-        for skill_md in self.skills_root.rglob("SKILL.md"):
+        for skill_md in sorted(self.skills_root.rglob("SKILL.md")):
             try:
                 metadata = _parse_skill_md(skill_md)
-                if metadata is not None:
-                    self._skills[metadata.name] = metadata
-            except Exception:
-                # Silently skip unparseable skills during discovery;
-                # the validator will report detailed errors.
-                pass
+            except (OSError, UnicodeDecodeError, yaml.YAMLError) as exc:
+                self._errors.append(f"{skill_md}: could not be read or parsed ({exc})")
+                continue
+
+            if metadata is None:
+                self._errors.append(f"{skill_md}: missing or malformed YAML frontmatter")
+                continue
+
+            if metadata.name in self._skills:
+                self._errors.append(
+                    f"{skill_md}: duplicate skill name '{metadata.name}' "
+                    f"(already defined by {self._skills[metadata.name].path})"
+                )
+                continue
+
+            self._skills[metadata.name] = metadata
 
         self._loaded = True
 

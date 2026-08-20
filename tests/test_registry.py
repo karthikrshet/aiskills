@@ -236,3 +236,23 @@ class TestSkillRegistry:
         (skill_dir / "SKILL.md").write_text(SKILL_A, encoding="utf-8")
         registry = SkillRegistry(tmp_path)
         assert registry.get("skill-alpha") is not None
+
+    def test_duplicate_skill_is_reported_and_first_skill_is_kept(self, tmp_path):
+        first = write_skill(tmp_path, SKILL_A, "first")
+        write_skill(tmp_path, SKILL_A, "second")
+        registry = SkillRegistry(tmp_path)
+
+        skill = registry.get("skill-alpha")
+
+        assert skill is not None
+        assert skill.path == first
+        assert any("duplicate skill name 'skill-alpha'" in error for error in registry.errors)
+
+    def test_malformed_skill_is_reported(self, tmp_path):
+        bad_skill = tmp_path / "bad" / "SKILL.md"
+        bad_skill.parent.mkdir()
+        bad_skill.write_text("# Not a skill", encoding="utf-8")
+        registry = SkillRegistry(tmp_path)
+
+        assert registry.all() == []
+        assert any("missing or malformed YAML frontmatter" in error for error in registry.errors)
