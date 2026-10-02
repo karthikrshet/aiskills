@@ -13,45 +13,14 @@ from rich.table import Table
 
 from aiskills import __version__
 from aiskills.doctor import run_doctor
+from aiskills.paths import find_project_root, find_skills_root
 from aiskills.registry import SkillRegistry
 from aiskills.validator import validate_all
 
 console = Console()
 
-
-def _find_skills_root() -> Path:
-    """Locate the AISkills skills/ directory.
-
-    Search order:
-    1. AISKILLS_DIR environment variable
-    2. The package's own skills/ directory (for development / installed package)
-    3. Current working directory skills/
-    """
-    import os
-
-    env_dir = os.environ.get("AISKILLS_DIR")
-    if env_dir:
-        return Path(env_dir) / "skills"
-
-    # When installed as a package, skills/ lives alongside pyproject.toml
-    # We walk up from this file to find the project root
-    this_file = Path(__file__).resolve()
-    for parent in this_file.parents:
-        candidate = parent / "skills"
-        if candidate.is_dir() and any(candidate.rglob("SKILL.md")):
-            return candidate
-
-    # Fallback: cwd
-    return Path.cwd() / "skills"
-
-
-def _find_project_root() -> Path:
-    """Walk up from cwd to find a git root or pyproject.toml."""
-    cwd = Path.cwd()
-    for parent in [cwd, *cwd.parents]:
-        if (parent / ".git").exists() or (parent / "pyproject.toml").exists():
-            return parent
-    return cwd
+_find_skills_root = find_skills_root
+_find_project_root = find_project_root
 
 
 AGENTS_MD_CONTENT = f"""\
@@ -410,3 +379,78 @@ def doctor(project_dir: str | None) -> None:
         sys.exit(1)
 
     console.print()
+
+
+@cli.command()
+@click.option(
+    "--transport",
+    default="stdio",
+    type=click.Choice(["stdio", "sse", "streamable-http"], case_sensitive=False),
+    help="Transport protocol to use (default: stdio).",
+)
+@click.option(
+    "--skills-dir",
+    default=None,
+    help="Path to skills directory (default: auto-detect)",
+    type=click.Path(exists=False),
+)
+@click.option(
+    "--project-dir",
+    default=None,
+    help="Project root directory (default: auto-detect)",
+    type=click.Path(exists=False),
+)
+@click.option(
+    "--host",
+    default="127.0.0.1",
+    help="Host to bind for network transports (default: 127.0.0.1)",
+)
+@click.option(
+    "--port",
+    default=8000,
+    type=int,
+    help="Port to bind for network transports (default: 8000)",
+)
+def mcp(
+    transport: str,
+    skills_dir: str | None,
+    project_dir: str | None,
+    host: str,
+    port: int,
+) -> None:
+    """Run the AISkills Model Context Protocol (MCP) server.
+
+    Connects AISkills to MCP-compliant AI agents (e.g. Claude Desktop, Cursor,
+    Zed, Cline) over stdio or SSE.
+    """
+    from rich.markup import escape
+
+    from aiskills.mcp_server import is_mcp_available, run_mcp_server
+
+    if not is_mcp_available():
+        install_cmd = escape('pip install "aiskills[mcp]"')
+        console.print(
+            "[bold red]MCP support is not installed.[/bold red]\n\n"
+            "To use the MCP server, install the optional extra:\n"
+            f"  [cyan]{install_cmd}[/cyan]\n"
+        )
+        sys.exit(1)
+
+    s_root = Path(skills_dir) if skills_dir else None
+    p_root = Path(project_dir) if project_dir else None
+
+    extra_kwargs = {}
+    if transport in ("sse", "streamable-http"):
+        extra_kwargs["host"] = host
+        extra_kwargs["port"] = port
+
+    try:
+        run_mcp_server(
+            transport=transport,
+            skills_root=s_root,
+            project_root=p_root,
+            **extra_kwargs,
+        )
+    except Exception as exc:
+        console.print(f"[bold red]MCP Server Error:[/bold red] {exc}")
+        sys.exit(1)

@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/karthikrshet/aiskills/actions/workflows/ci.yml/badge.svg)](https://github.com/karthikrshet/aiskills/actions/workflows/ci.yml)
 [![Validate Skills](https://github.com/karthikrshet/aiskills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/karthikrshet/aiskills/actions/workflows/validate-skills.yml)
-[![Tests](https://img.shields.io/badge/tests-68-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/tests-83-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.1.0--alpha-orange.svg)](CHANGELOG.md)
@@ -27,6 +27,7 @@
    - [Cursor](#3-cursor)
    - [OpenAI Codex](#4-openai-codex)
    - [Generic / Any Coding Agent](#5-generic--any-coding-agent)
+   - [Model Context Protocol (MCP)](#6-model-context-protocol-mcp)
 8. [CLI Installation and Usage](#cli-installation-and-usage)
 9. [Human-in-the-Loop Approval Model](#human-in-the-loop-approval-model)
 10. [AI Security by Design (OWASP GenAI Top 10)](#ai-security-by-design)
@@ -235,6 +236,20 @@ For any custom or LLM-based coding agent:
 2. Instruct the agent: *"Read AGENTS.md and CONTEXT.md before beginning work, and execute the relevant skill from skills/."*
 3. See [adapters/generic/README.md](adapters/generic/README.md).
 
+### 6. Model Context Protocol (MCP)
+
+Connect AISkills dynamically to Claude Desktop, Cursor, Zed, Windsurf, Claude Code, or Cline via native MCP:
+
+```bash
+# Run MCP server over stdio
+aiskills mcp
+
+# Or run over SSE
+aiskills mcp --transport sse --host 127.0.0.1 --port 8000
+```
+
+See [adapters/mcp/README.md](adapters/mcp/README.md).
+
 ---
 
 ## CLI Installation and Usage
@@ -246,8 +261,8 @@ For any custom or LLM-based coding agent:
 git clone https://github.com/karthikrshet/aiskills.git
 cd aiskills
 
-# Install package with development dependencies
-pip install -e ".[dev]"
+# Install package with development and MCP dependencies
+pip install -e ".[dev,mcp]"
 ```
 
 Verify installation:
@@ -267,6 +282,7 @@ aiskills --version
 | `aiskills info <skill>` | Display detailed skill metadata, description, tags, and related skills | `aiskills info rag-evaluation` |
 | `aiskills validate` | Validate all skills against schema, section, and placeholder rules | `aiskills validate --skills-dir skills/` |
 | `aiskills doctor` | Verify repository health, grounding context, and scan for suspicious patterns | `aiskills doctor --project-dir .` |
+| `aiskills mcp` | Run Model Context Protocol server over stdio or SSE | `aiskills mcp --transport stdio` |
 
 ---
 

@@ -35,6 +35,9 @@ dev = [
     "ruff>=0.4",
     "pip-audit>=2.9",
 ]
+mcp = [
+    "mcp>=1.0.0",
+]
 
 [project.scripts]
 aiskills = "aiskills.main:cli"
