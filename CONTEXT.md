@@ -22,6 +22,7 @@
 - `cli/aiskills/registry.py` — deterministic skill discovery and metadata parsing.
 - `cli/aiskills/validator.py` — skill schema validation.
 - `cli/aiskills/doctor.py` — local repository-health checks.
+- `cli/aiskills/mcp_server.py` — Model Context Protocol (MCP) server integration.
 
 **Key directories:**
 
