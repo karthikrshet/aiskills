@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/karthikrshet/aiskills/actions/workflows/ci.yml/badge.svg)](https://github.com/karthikrshet/aiskills/actions/workflows/ci.yml)
 [![Validate Skills](https://github.com/karthikrshet/aiskills/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/karthikrshet/aiskills/actions/workflows/validate-skills.yml)
-[![Tests](https://img.shields.io/badge/tests-83-brightgreen.svg)](tests/)
+[![Tests](https://img.shields.io/badge/tests-84-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.1.0--alpha-orange.svg)](CHANGELOG.md)

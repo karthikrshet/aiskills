@@ -202,10 +202,24 @@ class TestMCPBusinessLogic:
 
 
 class TestMCPServerFactory:
-    def test_is_mcp_available(self):
-        # We installed mcp, so it should return True
-        assert is_mcp_available() is True
+    def test_is_mcp_available_returns_bool(self):
+        assert isinstance(is_mcp_available(), bool)
 
+    def test_create_mcp_server_with_mock(self, sample_skills_root: Path, sample_project_root: Path):
+        from unittest.mock import MagicMock
+
+        mock_server = MagicMock()
+        mock_server.name = "aiskills"
+        mock_cls = MagicMock(return_value=mock_server)
+        with patch("aiskills.mcp_server.MCPServer", mock_cls):
+            server = create_mcp_server(
+                skills_root=sample_skills_root,
+                project_root=sample_project_root,
+            )
+            assert server.name == "aiskills"
+            mock_cls.assert_called_once()
+
+    @pytest.mark.skipif(not is_mcp_available(), reason="mcp optional dependency not installed")
     def test_create_mcp_server(self, sample_skills_root: Path, sample_project_root: Path):
         server = create_mcp_server(
             skills_root=sample_skills_root,
